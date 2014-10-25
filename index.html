@@ -1,0 +1,298 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>Scanner.js</title>
+  <meta name="description" content="scanner.js enables any web page to acquire images from scanners using JavaScript in most desktop browsers like IE, Chrome, Firefox and more. In most cases, software install is not required and the user can enjoy a great scanning experience.">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">Scanner.js</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">scanner.js enables any web page to acquire images from scanners using JavaScript in most desktop browsers like IE, Chrome, Firefox and more. In most cases, software install is not required and the user can enjoy a great scanning experience.</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/Asprise/scanner.js/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/Asprise/scanner.js/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/Asprise/scanner.js" class="code">View Scanner.js on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a name="scannerjs" class="anchor" href="#scannerjs"><span class="octicon octicon-link"></span></a>scanner.js</h1>
+
+<p>scanner.js enables any web page to acquire images from scanners using JavaScript in most desktop browsers like IE, Chrome, Firefox and more. In most cases, software install is not required and the user can enjoy a great scanning experience.</p>
+
+<h1>
+<a name="web-developers-guide-to-scannerjs" class="anchor" href="#web-developers-guide-to-scannerjs"><span class="octicon octicon-link"></span></a>WEB DEVELOPER’S GUIDE TO SCANNER.JS</h1>
+
+<p>Last updated on Oct, 2014</p>
+
+<h1>
+<a name="table-of-contents" class="anchor" href="#table-of-contents"><span class="octicon octicon-link"></span></a>Table of Contents</h1>
+
+<p>1   INTRODUCTION    4
+1.1 ABOUT SCANNER.JS    4
+1.2 WHERE TO FIND SCANNER.JS    4
+1.3 THE DEMO WEB PAGE   4
+1.4 SCREENSHOT  5
+2   SCANNER.JS IN ACTION    6
+2.1 ADD SCANNER.JS SUPPORT  6
+2.2 OPENS THE SCAN DIALOG   6
+2.3 THE USER SCANS AND EDITS IMAGES 7
+2.4 THE DIALOG RETURNS  9
+2.5 UPLOAD THE IMAGES SCANNED THROUGH FORM  11
+3   ADVANCED USAGES 13
+3.1 SIMPLE SCAN 13
+3.2 SCAN AND UPLOAD WITH THE SCAN DIALOG    13
+3.3 SCAN AND UPLOAD AS PDF  14
+3.4 SUPPORT FOR LEGACY BROWSERS 15
+3.5 FORCE TO RETURN IMAGE/THUMBNAIL AS URLS INSTEAD OF BASE64   16
+4   SUPPORT AND PROFESSIONAL SERVICES   17
+4.1 SUPPORT WEB SITE    17
+4.2 BASIC SUPPORT   17
+4.3 PROFESSIONAL SERVICES   17</p>
+
+<h1>
+<a name="1-introduction" class="anchor" href="#1-introduction"><span class="octicon octicon-link"></span></a>1 Introduction</h1>
+
+<p>1.1 About scanner.js
+Bascanner.js enables any web page to acquire images from scanners using JavaScript in most desktop browsers like IE, Chrome, Firefox and more. In most cases, software install is not required and the user can enjoy a great scanning experience.
+1.2 Where to find scanner.js
+<a href="http://direct.asprise.com/scan/javascript/base/scanner.js">http://direct.asprise.com/scan/javascript/base/scanner.js</a>
+You may copy this file to any host including any CDN (content delivery network) if you have a valid license.
+1.3 The demo web page
+<a href="http://direct.asprise.com/scan/javascript/base/scanner.js-demo.html">http://direct.asprise.com/scan/javascript/base/scanner.js-demo.html</a>
+Source code of the demo can be found at: <a href="https://github.com/Asprise/scanner.js/blob/master/scanner.js-demo.html">https://github.com/Asprise/scanner.js/blob/master/scanner.js-demo.html</a>
+1.4 Screenshot</p>
+
+<h1>
+<a name="2-scannerjs-in-action" class="anchor" href="#2-scannerjs-in-action"><span class="octicon octicon-link"></span></a>2 scanner.js In Action</h1>
+
+<p>scanner.js allows any HTML/JavaScript developer to easily add document scanning, image editing and uploading functionality to add web page. 
+We’ll use the demo web page to explain how it works. The complete source code of the demo page is available at: <a href="https://github.com/Asprise/scanner.js/blob/master/scanner.js-demo.html">https://github.com/Asprise/scanner.js/blob/master/scanner.js-demo.html</a> </p>
+
+<h2>
+<a name="21--add-scannerjs-support" class="anchor" href="#21--add-scannerjs-support"><span class="octicon octicon-link"></span></a>2.1  Add scanner.js support</h2>
+
+<p>All pages that need to access scanners must import scanner.js:</p>
+
+
+
+<h2>
+<a name="22--opens-the-scan-dialog" class="anchor" href="#22--opens-the-scan-dialog"><span class="octicon octicon-link"></span></a>2.2  Opens the Scan Dialog</h2>
+
+<p>The user clicks on a button, which triggers the scan function in JavaScript:</p>
+
+<p>Scan
+The JavaScript scan method opens the scan dialog:</p>
+
+
+
+<p>function scan() {
+  com_asprise_scan_request(myCallBackFunc, // callback on dialog closed
+com_asprise_scan_cmd_method_SCAN, // action: SCAN
+com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, // return types
+{'wia-version': 2} // options
+  );
+}
+Note the above code specifies a callback function to accept images and/or thumbnails when the scan dialog closes. The source code of the callback function will be shown later.</p>
+
+<h2>
+<a name="23--the-user-scans-and-edits-images" class="anchor" href="#23--the-user-scans-and-edits-images"><span class="octicon octicon-link"></span></a>2.3  The User Scans and Edits Images</h2>
+
+<p>The following dialog will appear and the user can then use ‘Quick scan’ or ‘Scan’ button to acquire images from scanners:</p>
+
+<p>Once an image is acquired, the user may edit it by click on the ‘Edit’ button on the top left of the image thumbnail:</p>
+
+<p>The following image editing actions are support: crop, rotate, flip and scale.</p>
+
+<h2>
+<a name="24--the-dialog-returns" class="anchor" href="#24--the-dialog-returns"><span class="octicon octicon-link"></span></a>2.4  The Dialog Returns</h2>
+
+<p>The user may click ‘Use selected’ or ‘Cancel’ button to close the scan dialog:</p>
+
+<p>Immediately after the dialog is closed, the callback function will be called:
+function myCallBackFunc(success, mesg, thumbs, images) {
+  for(var i = 0; (images instanceof Array) &amp;&amp; i &lt; images.length; i++){
+    addImage(images[i], document.getElementById('images'));
+  }
+}</p>
+
+<p>var imagesScanned = []; // global var to store all images scanned</p>
+
+<p>function addImage(imgObj, domParent) { 
+  imagesScanned.push(imgObj);
+  var imgSrc = imgObj.datatype == com_asprise_scan_datatype_BASE64 ?
+'data:' + imgObj.mimetype + ';base64,' + imgObj.data : imgObj.data;
+  var elementImg = createDomElementFromModel({
+'name': 'img',
+'attributes': {
+  'class': 'scanned',
+  'src': imgSrc,
+  'height': '100',
+  'class': 'zoom'
+}
+  });
+  domParent.appendChild(elementImg);
+}
+The addImage function creates a new <img> element for every image scanned:</p>
+
+<p>Image and thumbnail objects returned from the scan dialog have the following properties:
+Name    Values  Remarks
+datatype    com_asprise_scan_datatype_BASE64
+com_asprise_scan_datatype_URL   Either base64 or url
+mimetype    image/jpeg
+image/tiff
+application/pdf 
+data    The actual data of the datatype 
+The HTML code:</p>
+
+
+    Field 1
+    
+    <br><br>
+
+    Documents
+    Scan
+
+    <div>
+    </div>
+
+    
+
+
+<h2>
+<a name="25--upload-the-images-scanned-through-form" class="anchor" href="#25--upload-the-images-scanned-through-form"><span class="octicon octicon-link"></span></a>2.5  Upload the images scanned through form</h2>
+
+<p>When the user clicks on the ‘Submit form’ button, the following JavaScript function will be invoked:
+function submitForm1() {
+  com_asprise_scan_submit_form_with_images('form1', imagesScanned,<br>
+    function(xhr) {
+      if(xhr.readyState == 4) { // 4: request finished<br>
+        // todo process response: xhr.responseText
+      }
+    });
+}
+Remember imagesScanned contains all the images that have been scanned. All fields in the form with id ‘form1’ are submitted together with the scanned images.</p>
+
+<h1>
+<a name="3-advanced-usages" class="anchor" href="#3-advanced-usages"><span class="octicon octicon-link"></span></a>3 Advanced Usages</h1>
+
+<h2>
+<a name="31--simple-scan" class="anchor" href="#31--simple-scan"><span class="octicon octicon-link"></span></a>3.1  Simple scan</h2>
+
+<p>When to use: In this mode, the Swing based dialog will not be shown and only a system UI scan will show up. Once the scan is done, the user does not have an opportunity to edit the image as it will be returned directly to the callback function.
+How to use:
+com_asprise_scan_request(myCallBackFunc,<br>
+  com_asprise_scan_cmd_method_SIMPLE_SCAN, // method: simple scan
+  com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, null);</p>
+
+<h2>
+<a name="32--scan-and-upload-with-the-scan-dialog" class="anchor" href="#32--scan-and-upload-with-the-scan-dialog"><span class="octicon octicon-link"></span></a>3.2  Scan and upload with the scan dialog</h2>
+
+<p>When to use: you need to have scanned images upload directly to a webserver or the user uses a legacy browser that does not support BASE64 as image source.
+How to use:
+com_asprise_scan_request(myCallBackFunc,<br>
+  com_asprise_scan_cmd_method_SCAN_THEN_UPLOAD, // scan and upload
+  com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, {
+   'upload-url': 'YOUR_URL_WHICH_CAN_BE_FORMED_DYNAMICALLY'
+  }
+);
+The user will see the following buttons:</p>
+
+<p>Once the user clicks on ‘Upload selected’, the response returned upon uploading will be available in the mesg parameter of the callback function:
+function myCallBackFunc(success, mesg, thumbs, images)
+Tips:
+• Consider to return and display the URLs of the upload images so that the user can click to verify;
+• You may request the dialog to return thumbnails to be displayed on your web page;
+• You may use the following URL to test uploading: 
+<a href="http://asprise.com/scan/applet/upload.php?action=upload">http://asprise.com/scan/applet/upload.php?action=upload</a> (It will save any file posted and returns the URL as the response. The source code of this file is available at <a href="http://asprise.com/scan/applet/upload.php?action=source">http://asprise.com/scan/applet/upload.php?action=source</a>)
+By default, images will be uploaded as JPG files.</p>
+
+<h2>
+<a name="33--scan-and-upload-as-pdf" class="anchor" href="#33--scan-and-upload-as-pdf"><span class="octicon octicon-link"></span></a>3.3  Scan and upload as PDF</h2>
+
+<p>When to use: you need to have multiple images uploaded as a single PDF file to a web server.
+How to use:
+com_asprise_scan_request(myCallBackFunc,<br>
+  com_asprise_scan_cmd_method_SCAN_THEN_UPLOAD, // scan and upload
+  com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, {
+   'upload-url': 'YOUR_URL_WHICH_CAN_BE_FORMED_DYNAMICALLY',
+   'format': 'PDF'
+  }
+);</p>
+
+<h2>
+<a name="34--support-for-legacy-browsers" class="anchor" href="#34--support-for-legacy-browsers"><span class="octicon octicon-link"></span></a>3.4  Support for legacy browsers</h2>
+
+<p>When to use: you have customers running on legacy browsers, for example IE 7.
+IE 7 does not support base64 as image source and IE 8 has a size limit for base64 data of 32kb. To support those legacy browsers, one can use an intermediate image server so that the scan dialog can upload images a to the image server and return URL of the images/thumbnails to JavaScript instead of base64.
+How to use:
+com_asprise_scan_request(myCallBackFunc,<br>
+  com_asprise_scan_cmd_method_SCAN_THEN_UPLOAD, // scan and upload
+  com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, {
+   'image-server-url': 'YOUR_URL_WHICH_CAN_BE_FORMED_DYNAMICALLY'
+  }
+);
+If you do not specify one, the following URL will be used:
+<a href="http://asprise.com/scan/applet/upload.php?action=upload">http://asprise.com/scan/applet/upload.php?action=upload</a>
+The source code of sample implementation of the image server is available at <a href="http://asprise.com/scan/applet/upload.php?action=source">http://asprise.com/scan/applet/upload.php?action=source</a>
+The image server accepts image files posted and output URLs in plain text with URLs separated by line break.</p>
+
+<h2>
+<a name="35--force-to-return-imagethumbnail-as-urls-instead-of-base64" class="anchor" href="#35--force-to-return-imagethumbnail-as-urls-instead-of-base64"><span class="octicon octicon-link"></span></a>3.5  Force to return image/thumbnail as URLs instead of base64</h2>
+
+<p>When to use: you want to handle images as URLs instead of base64 in JavaScript.
+For non-legacy browsers, images and thumbnails will be passed to JavaScript in base64 data format. If you prefer to get images and thumbnails as URLs, you can use the following options:
+How to use:
+com_asprise_scan_request(myCallBackFunc,<br>
+  com_asprise_scan_cmd_method_SCAN, // scan
+  com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS, {
+   'image-server-url': 'YOUR_URL_WHICH_CAN_BE_FORMED_DYNAMICALLY',
+   'preferred-datatype': 'url'
+  }
+);
+If image-server-url is omitted, the following URL will be used:
+<a href="http://asprise.com/scan/applet/upload.php?action=upload">http://asprise.com/scan/applet/upload.php?action=upload</a></p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/Asprise" class="avatar"><img src="https://avatars3.githubusercontent.com/u/7463918?v=2&amp;s=60" width="48" height="48"></a> <a href="https://github.com/Asprise">Asprise</a> maintains <a href="https://github.com/Asprise/scanner.js">Scanner.js</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/Asprise/scanner.js/tarball/master" class="tar">tar</a><a href="https://github.com/Asprise/scanner.js/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
