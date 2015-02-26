@@ -43,6 +43,18 @@
                 });
         }
 
+        function scanAndSaveToLocal() {
+            displayStatus(true, 'Scanning', true);
+            com_asprise_scan_request(myCallBackFunc,
+                    com_asprise_scan_cmd_method_SCAN, // normal scan with the applet UI
+                    com_asprise_scan_cmd_return_IMAGES_AND_THUMBNAILS,
+                    {
+                        'wia-version': 2,
+                        'save-to-folder': 'C:\\tmp\\scanned',
+                        'open-folder-after-save': 'true'
+                    });
+        }
+
         function scanThenUpload() {
             displayStatus(true, 'Scanning', true);
             com_asprise_scan_request(myCallBackFunc,
@@ -51,6 +63,7 @@
                 {
                     'upload-url': 'http://asprise.com/scan/applet/upload.php?action=upload' // target URL
                     ,'format': 'PDF'
+                    ,'upload-cookies': document.cookie
                 });
         }
 
@@ -130,6 +143,9 @@
             <button type="button" class="btn btn-default" onclick="scanSimple();">Simple Scan</button>
             <button type="button" class="btn btn-info" onclick="scan();">Scan</button>
             <button type="button" class="btn btn-default" onclick="scanThenUpload();">Scan Then Upload</button>
+
+
+            <button type="button" class="btn btn-default" onclick="scanAndSaveToLocal();" style="margin-left: 20px;">Scan and Save to Local Disk</button>
 
             <div id="images" style="margin-left: 154px; margin-top: 10px;">
             </div>
