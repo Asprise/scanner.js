@@ -1,8 +1,2 @@
-scanner.js
-==========
 
-scanner.js enables any web page to acquire images from scanners using JavaScript in most desktop browsers like IE, Chrome, Firefox and more. In most cases, software install is not required and the user can enjoy a great scanning experience.
-
-New: <a href="http://asprise.com/document-scan-upload-image-browser/javascript-web-scanner.js-demos.html">Live demo: scan documents and upload images from browsers like IE, Chrome and FireFox to web servers ...
-
-<img src="http://asprise.com/scan/scannerjs/img/screen-scannerjs.jpg"/></a>
+<h1><a href="https://github.com/Asprise/scannerjs.javascript-scanner-access-in-browsers-chrome-ie.scanner.js">Moved. Please click here to visit Scanner.js ➠ </a></h1>
